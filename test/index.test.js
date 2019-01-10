@@ -74,4 +74,33 @@ describe('Store',  () => {
       });
     });
   });
+
+  it('updates an existing object', () => {
+    store.create({ name: 'objetc1' }, (err, typoCreated) => {
+      store.findByIdAndUpdate(typoCreated._id, { name: 'object1' }, (err, updatedWithoutTypo) => {
+        expect(err).toBeFalsy();
+        expect(updatedWithoutTypo).toEqual({ name: 'object1', _id: typoCreated._id });
+        store.findById(typoCreated._id, (err, foundObj) => {
+          expect(foundObj).toEqual(updatedWithoutTypo);
+        });
+      });
+    });
+  });
 });
+
+
+//   it('updates an existing object', () => {
+//     store.create({ name: 'object1' }, (err, createdPerson) => {
+//       store.findByIdAndUpdate(_id, { name: 'object2' }, (err, updatedPerson) => {
+//         //expect(updatedPerson).toReturn(createdPerson({ name: 'object2'}));
+//         store.findById(createdPerson._id, (err, foundPerson) => {
+//           expect(updatedPerson).toEqual({ name: 'object2'});
+//         });
+//       });
+//     });
+//   });
+// });
+
+// STRETCH GOAL: .findByIdAndUpdate(_id, objectToUpdate, callback(error, updatedObject))
+// Write the new object to file, replacing existing object
+// Takes a callback which takes an error and the deserialized (JSON.parse) updated object};
