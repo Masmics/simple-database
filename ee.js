@@ -5,3 +5,5 @@ ee.on('we did it', () => {
   console.log('yes we did');
 });
 ee.emit('we did it');
+
+// 
