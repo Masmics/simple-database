@@ -1,20 +1,21 @@
-// const Store = require('./letterEmitter.js');
+const LetterEmitter = require('./letterEmitter.js');
 
+describe('LetterEmitter', () => {
+  let letterEmitter = null;
+  beforeEach(done => {
+    letterEmitter = new LetterEmitter();
+  });
 
-// describe('Create new letterEmitter before each', () => {
-//   let store = null;
-//   beforeEach(done => {
-//     const ee = new EventEmitter();
-//   })
+  it('splits a string');
+  let countFn = jest.fn();
+  const str = 'hello';
 
-// it('splits a string')
+  letterEmitter.on('letter', countFn);
 
-// }
+  letterEmitter.on('end', done => {
+    expect(countFn).toHaveBeenCalledTimes(str.length);
+    done();
+  });
+  letterEmitter.read(str);
+});
 
-
-// });
-
-// beforeEach(done => {
-//   rimraf('./testData/store', err => {
-//     done(err);
-//   });
